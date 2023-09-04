@@ -1,7 +1,10 @@
 import random
 
+NUM_DIGITS = 3
+MAX_GUESSES = 10
+
 def main():
-      print('''Bages, a deductive logic game.
+      print('''Bagels, a deductive logic game.
                   By Al Sweigart al@inventwithpython.com
                   
                   I am thinking of a {}-digit number with no repeated digits.
@@ -20,7 +23,7 @@ def main():
             print(' You have {} guesses to get it.'.format(MAX_GUESSES))
 
             numGuesses = 1
-            while numGuesses <= MAX_Guesses:
+            while numGuesses <= MAX_GUESSES:
                   guess= ''
                   # loop until user enters a valid number
                   while len(guess) != NUM_DIGITS or not guess.isdecimal():
@@ -34,7 +37,7 @@ def main():
                         if guess == secretNum:
                               print('You got it!')
                               break # they're correct, break loop
-                        if numGuesses > MAX_Guesses:
+                        if numGuesses > MAX_GUESSES:
                               print('You ran out of guesses.')
                               print('The answer was {}.'.format(secretNum))
             # ask user if they want to play again
@@ -45,4 +48,34 @@ def main():
 
 def getSecretNum():
       #Returns a string made up of NUM_DIGITS unique random digits
+      numbers = list('0123456789')
+      random.shuffle(numbers)
+
+      #get the first num_digits digits in the list for the secret number
+      secretNum = ''
+      for i in range (NUM_DIGITS):
+            secretNum += str(numbers[i])
+      return secretNum
+
+def getClues(guess, secretNum):
+      # returns a string with the clues for a guess and secret number pair
+      if guess == secretNum:
+            return 'You got it!'
       
+      clues = []
+
+      for i in range(len(guess)):
+            if guess[i] == secretNum[i]:
+                  clues.append('Fermi')
+            elif guess[i] in secretNum:
+                  clues.append('Pico')
+      if len(clues) == 0:
+            return 'Bagels'
+      else: 
+            #sort the clues in alphabetical order so their original order doesn't give information away
+            clues.sort()
+            # make a single string form the list of string clues
+            return ' '.join(clues)
+
+if __name__ == '__main__':
+      main()
