@@ -9,7 +9,7 @@ def getBirthdays(numOfBirthdays):
 
         #get a random day into the year
         randomNumberOfDays = datetime.timedelta(random.randint(0,364))
-        birthday = startofyear + randomNumberOfDays
+        birthday = startOfYear + randomNumberOfDays
         birthdays.append(birthday)
     return birthdays
 def getMatch(birthdays):
@@ -20,7 +20,7 @@ def getMatch(birthdays):
         for a, birthdayA in enumerate(birthdays):
              for b, birthdayB in enumerate(birthdays[a+1:]):
                   if birthdayA == birthdayB:
-                       return BirthdayA:
+                       return birthdayA
                   
 # display intro
 print(('''
@@ -43,38 +43,38 @@ while True:
           break
 print()
 
-# generate and display th ebirthdays:
-print('Here are',numbdays, 'birthdays:')
-birthdays = getbirthdays(numBdays)
+# generate and display the birthdays:
+print('Here are',numBDays, 'birthdays:')
+birthdays = getBirthdays(numBDays)
 for i, birthday in enumerate(birthdays):
      if i != 0:
           #display a comma for each birthday after teh first birthday.
           print(', ', end='')
-     monthName = months[birthda.month -1]
-     datetext = '{} {}'.format(monthName, birthday.day)
+     monthName = months[birthday.month -1]
+     dateText = '{} {}'.format(monthName, birthday.day)
      print(dateText, end='')
 print()
 print()
 
 # determine if there are two birthdays that match.
-match = getmatch(birthdays)
+match = getMatch(birthdays)
 
 #display the results
 print('In this simulation, ',end='')
-if match != none:
+if match != None:
      monthname= months[match.month -1]
-     datetext = '{} {}'.format(monthName, match.day)
-     print('multiple people have a birthday on', datetext)
+     dateText = '{} {}'.format(monthName, match.day)
+     print('multiple people have a birthday on', dateText)
 else:
      print('there are no matching birthdays.')
 print()
 
 # run through 100,000 simulations:
-print('Generating', numbdays, 'random birthdays 100,000 times...')
+print('Generating', numBDays, 'random birthdays 100,000 times...')
 input('press Enter to begin...')
 
 print('Let\'s run another 100,000 simulations.')
-simmatch = 0
+simMatch = 0
 for i in range(100000):
      #report the progress every 10,000 simulations:
      if i % 10000 == 0:
